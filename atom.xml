@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>哆啦B梦</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wzdnzd.github.io/"/>
+  <updated>2018-09-02T08:13:57.146Z</updated>
+  <id>https://wzdnzd.github.io/</id>
+  
+  <author>
+    <name>哆啦B梦</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>机器学习--数据预处理</title>
+    <link href="https://wzdnzd.github.io/articles/20180902/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    <id>https://wzdnzd.github.io/articles/20180902/机器学习-数据预处理/</id>
+    <published>2018-09-02T08:09:14.000Z</published>
+    <updated>2018-09-02T08:13:57.146Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/articles/20180902/机器学习-数据预处理/机器学习.png&quot; alt=&quot;特征工程&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://wzdnzd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wzdnzd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wzdnzd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="特征工程" scheme="https://wzdnzd.github.io/tags/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+</feed>

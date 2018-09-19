@@ -1,1 +1,211 @@
-window._bd_share_main.F.module("view/image_view",function(t,e,i){var b=t("base/tangram").T,o=t("base/class").Class,s=t("conf/const"),n=t("view/view_base");e.View=o.create(function(u){function o(t){var e=t.target;(function(t){var e=!0;u.bdMinHeight&&u.bdMinHeight>t.offsetHeight?e=!1:u.bdMinWidth&&u.bdMinWidth>t.offsetWidth?e=!1:(t.offsetWidth<100||t.offsetHeight<100)&&(e=!1);return e})(e)&&(f.element=e,f.start())}function n(){f.abort()}function t(t){t&&function(t){if(u.bdCustomStyle){var e=document.createElement("link");e.href=u.bdCustomStyle,e.rel="styleSheet",e.type="text/css",e.onLoad=function(){t&&t()},document.getElementsByTagName("head")[0].appendChild(e)}}(function(){(function(t){if("list"==u.viewType)for(var e={16:{lbl:53,pright:8,item:18},24:{lbl:57,pright:8,item:28},32:{lbl:61,pright:8,item:38}}[u.viewSize],i=Math.floor((t.offsetWidth-e.lbl-e.pright-10)/e.item),o=m.find(".bdimgshare-icon"),n=0,s=o.length-1;n<s;n++)n<i-1?b(o[n]).show():b(o[n]).hide();var a={width:m.offsetWidth,height:m.offsetHeight},r={width:t.offsetWidth,height:t.offsetHeight},h=(l=b(t).offset(),d=r,c=a,"list"==u.viewType?{top:l.top+("bottom"==u.viewPos?d.height-c.height:0),left:l.left}:"collection"==u.viewType?{top:l.top+(-1<u.viewPos.toLowerCase().indexOf("bottom")?d.height-c.height-5:5),left:l.left+(-1<u.viewPos.toLowerCase().indexOf("left")?5:d.width-c.width-5)}:{top:l.top+("bottom"==u.viewPos?d.height-c.height:0),left:l.left+(d.width-c.width)}),f={position:"absolute",top:h.top+"px",left:h.left+"px"};var l,d,c;"list"==u.viewType&&(f.width=r.width+"px"),m.css(f)})(t),m.show(),e=!1,i=t})}var r=this,h="bdimgshare_"+(new Date).getTime(),m=null,e=!1,i=null,f=new function(t){var e=!1,i=!1;this.clearAbort=function(){i&&(i=clearTimeout(i))},this.start=function(){i&&(i=clearTimeout(i)),e||(e=setTimeout(function(){t.startFn&&t.startFn(),e=!1},t.time))},this.abort=function(){e&&(e=clearTimeout(e)),i||(i=setTimeout(function(){t.abortFn&&t.abortFn(),i=!1},t.time))}}({time:200,startFn:function(){t(f.element)},abortFn:function(){e||m.hide()}});r.render=function(t){var i;i=u.tag||"",b("img").each(function(t,e){if(!i||b(e).attr(s.CONFIG_TAG_ATTR)==i){if(1==b(e).attr("data-bd-imgshare-binded"))return;b(e).on("mouseenter",o).on("mouseleave",n),b(e).attr("data-bd-imgshare-binded",1)}}),function(){var t=["<div id='#{id}' class='sr-bdimgshare sr-bdimgshare-#{type} sr-bdimgshare-#{size} sr-bdimgshare-#{color}' style='height:#{height}px;line-height:#{lineHeight}px;font-size:#{fontSize}px;width:#{width}px;display:none;'>","<div class='bdimgshare-bg'></div>","<div class='bdimgshare-content bdsharebuttonbox bdshare-button-style#{style}-#{size}'>","<label class='bdimgshare-lbl'>#{text}</label>","#{list}","</div>","</div>"].join(""),i="<a href='#' onclick='return false;' class='bds_#{icon}' data-cmd='#{icon}' hidefocus></a>",e="list"==u.viewType,o=[];e&&b.each(u.viewList,function(t,e){o.push(b.string(i).format({icon:e}))}),o.push(b.string(i).format({icon:"more"}));var n={16:"36",24:"42",32:"48"},s={16:"33",24:"39",32:"45"},a=b.string(t).format({id:h,text:u.viewText||(e?"图片分享":"分享"),type:u.viewType,style:u.viewStyle,size:u.viewSize,color:u.viewColor,width:e?"auto":{16:"60",24:"71",32:"82"}[u.viewSize],height:(e?n:s)[u.viewSize],lineHeight:(e?n:s)[u.viewSize]-10,fontSize:{16:"12",24:"14",32:"14"}[u.viewSize],list:o.join("")});b("body").insertHTML("beforeEnd",a),r._entities=m=b("#"+h),m.on("mouseleave",function(){f.abort()}).on("mouseenter",function(){f.clearAbort()})}()},r._init=function(){},r._keepBarVisible=function(){f.clearAbort(),e=!0},r._getImageSrc=function(){return i.src},r._distory=function(){m.remove();var i=u.tag||"";b("img").each(function(t,e){i&&b(e).attr(s.CONFIG_TAG_ATTR)!=i||(b(e).off("mouseenter",o).off("mouseleave",n),b(e).removeAttr("data-bd-imgshare-binded"))})}},n.ViewBase)});
+window._bd_share_main.F.module("view/image_view", function (e, t, n) {
+  var r = e("base/tangram").T,
+    i = e("base/class").Class,
+    s = e("conf/const"),
+    o = e("view/view_base");
+  t.View = i.create(function (e) {
+    function l() {
+      var t = e.tag || "";
+      r("img").each(function (e, n) {
+        if (!t || r(n).attr(s.CONFIG_TAG_ATTR) == t) {
+          if (r(n).attr("data-bd-imgshare-binded") == 1) return;
+          r(n).on("mouseenter", c).on("mouseleave", h), r(n).attr("data-bd-imgshare-binded", 1)
+        }
+      })
+    }
+
+    function c(e) {
+      var t = e.target;
+      p(t) && (f.element = t, f.start())
+    }
+
+    function h() {
+      f.abort()
+    }
+
+    function p(t) {
+      var n = !0;
+      if (e.bdMinHeight && e.bdMinHeight > t.offsetHeight) n = !1;
+      else if (e.bdMinWidth && e.bdMinWidth > t.offsetWidth) n = !1;
+      else if (t.offsetWidth < 100 || t.offsetHeight < 100) n = !1;
+      return n
+    }
+
+    function d(e) {
+      e && w(function () {
+        g(e), i.show(), o = !1, u = e
+      })
+    }
+
+    function v() {
+      o || i.hide()
+    }
+
+    function m() {
+      return i.find(".bdimgshare-icon")
+    }
+
+    function g(t) {
+      if (e.viewType == "list") {
+        var n = {
+            16: {
+              lbl: 53,
+              pright: 8,
+              item: 18
+            },
+            24: {
+              lbl: 57,
+              pright: 8,
+              item: 28
+            },
+            32: {
+              lbl: 61,
+              pright: 8,
+              item: 38
+            }
+          },
+          s = n[e.viewSize],
+          o = Math.floor((t.offsetWidth - s.lbl - s.pright - 10) / s.item),
+          u = m();
+        for (var a = 0, f = u.length - 1; a < f; a++) a < o - 1 ? r(u[a]).show() : r(u[a]).hide()
+      }
+      var l = {
+          width: i.offsetWidth,
+          height: i.offsetHeight
+        },
+        c = {
+          width: t.offsetWidth,
+          height: t.offsetHeight
+        },
+        h = y(r(t).offset(), c, l),
+        p = {
+          position: "absolute",
+          top: h.top + "px",
+          left: h.left + "px"
+        };
+      e.viewType == "list" && (p.width = c.width + "px"), i.css(p)
+    }
+
+    function y(t, n, r) {
+      return e.viewType == "list" ? {
+        top: t.top + (e.viewPos == "bottom" ? n.height - r.height : 0),
+        left: t.left
+      } : e.viewType == "collection" ? {
+        top: t.top + (e.viewPos.toLowerCase().indexOf("bottom") > -1 ? n.height - r.height - 5 : 5),
+        left: t.left + (e.viewPos.toLowerCase().indexOf("left") > -1 ? 5 : n.width - r.width - 5)
+      } : {
+        top: t.top + (e.viewPos == "bottom" ? n.height - r.height : 0),
+        left: t.left + (n.width - r.width)
+      }
+    }
+
+    function b() {
+      var s = ["<div id='#{id}' class='sr-bdimgshare sr-bdimgshare-#{type} sr-bdimgshare-#{size} sr-bdimgshare-#{color}' style='height:#{height}px;line-height:#{lineHeight}px;font-size:#{fontSize}px;width:#{width}px;display:none;'>", "<div class='bdimgshare-bg'></div>", "<div class='bdimgshare-content bdsharebuttonbox bdshare-button-style#{style}-#{size}'>", "<label class='bdimgshare-lbl'>#{text}</label>", "#{list}", "</div>", "</div>"].join(""),
+        o = "<a href='#' onclick='return false;' class='bds_#{icon}' data-cmd='#{icon}' hidefocus></a>",
+        u = e.viewType == "list",
+        a = [];
+      u && r.each(e.viewList, function (e, t) {
+        a.push(r.string(o).format({
+          icon: t
+        }))
+      }), a.push(r.string(o).format({
+        icon: "more"
+      }));
+      var l = {
+          16: "36",
+          24: "42",
+          32: "48"
+        },
+        c = {
+          16: "33",
+          24: "39",
+          32: "45"
+        },
+        h = {
+          16: "60",
+          24: "71",
+          32: "82"
+        },
+        p = {
+          16: "12",
+          24: "14",
+          32: "14"
+        },
+        d = r.string(s).format({
+          id: n,
+          text: e.viewText || (u ? "\u56fe\u7247\u5206\u4eab" : "\u5206\u4eab"),
+          type: e.viewType,
+          style: e.viewStyle,
+          size: e.viewSize,
+          color: e.viewColor,
+          width: u ? "auto" : h[e.viewSize],
+          height: (u ? l : c)[e.viewSize],
+          lineHeight: (u ? l : c)[e.viewSize] - 10,
+          fontSize: p[e.viewSize],
+          list: a.join("")
+        });
+      r("body").insertHTML("beforeEnd", d), t._entities = i = r("#" + n), i.on("mouseleave", function () {
+        f.abort()
+      }).on("mouseenter", function () {
+        f.clearAbort()
+      })
+    }
+
+    function w(t) {
+      if (e.bdCustomStyle) {
+        var n = document.createElement("link");
+        n.href = e.bdCustomStyle, n.rel = "styleSheet", n.type = "text/css", n.onLoad = function () {
+          t && t()
+        }, document.getElementsByTagName("head")[0].appendChild(n)
+      } //   else window._bd_share_main.F.use(["imgshare.css", "share_style0_" + e.viewSize + ".css"], function () {
+      //     t && t()
+      //   })
+    }
+    var t = this,
+      n = "bdimgshare_" + (new Date).getTime(),
+      i = null,
+      o = !1,
+      u = null,
+      a = function (e) {
+        function i() {
+          r && (r = clearTimeout(r)), n || (n = setTimeout(function () {
+            e.startFn && e.startFn(), n = !1
+          }, e.time))
+        }
+
+        function s() {
+          n && (n = clearTimeout(n)), r || (r = setTimeout(function () {
+            e.abortFn && e.abortFn(), r = !1
+          }, e.time))
+        }
+        var t = this,
+          n = !1,
+          r = !1;
+        t.clearAbort = function () {
+          r && (r = clearTimeout(r))
+        }, t.start = i, t.abort = s
+      },
+      f = new a({
+        time: 200,
+        startFn: function () {
+          d(f.element)
+        },
+        abortFn: function () {
+          v()
+        }
+      });
+    t.render = function (e) {
+      l(), b()
+    }, t._init = function () {}, t._keepBarVisible = function () {
+      f.clearAbort(), o = !0
+    }, t._getImageSrc = function () {
+      return u.src
+    }, t._distory = function () {
+      i.remove();
+      var t = e.tag || "";
+      r("img").each(function (e, n) {
+        if (!t || r(n).attr(s.CONFIG_TAG_ATTR) == t) r(n).off("mouseenter", c).off("mouseleave", h), r(n).removeAttr("data-bd-imgshare-binded")
+      })
+    }
+  }, o.ViewBase)
+});

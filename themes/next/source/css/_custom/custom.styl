@@ -1,8 +1,39 @@
 // 主页文章添加阴影效果
 .post {
-    margin-top: 60px;
-    margin-bottom: 60px;
-    padding: 25px;
-    -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
-    -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+  -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+}
+
+.tip:before {
+  font-weight: 700
+}
+
+.tip {
+  position: relative;
+  padding: 2px 15px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, .5);
+  background-color: #f8f8f8;
+  border-left: 2px solid #f66;
+  margin-bottom: 15px
+}
+
+.tip:before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -8px;
+  content: "!";
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  background-color: #f66;
+  font-family: Dosis, 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
 }

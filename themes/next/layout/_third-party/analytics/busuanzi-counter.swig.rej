@@ -1,0 +1,8 @@
+diff a/themes/next/layout/_third-party/analytics/busuanzi-counter.swig b/themes/next/layout/_third-party/analytics/busuanzi-counter.swig	(rejected hunks)
+@@ -1,5 +1,6 @@
+ {% if theme.busuanzi_count.enable %}
+ <div class="busuanzi-count">
++  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ 
+   {% if theme.busuanzi_count.total_visitors %}
+     <span class="site-uv" title="{{ __('footer.total_visitors') }}">

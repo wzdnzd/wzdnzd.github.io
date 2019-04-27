@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wzdnzd.github.io/"/>
-  <updated>2019-04-27T03:42:51.878Z</updated>
+  <updated>2019-04-27T03:50:06.046Z</updated>
   <id>https://wzdnzd.github.io/</id>
   
   <author>
@@ -21,13 +21,13 @@
     <link href="https://wzdnzd.github.io/articles/20190427/%E8%87%AA%E5%8A%A9%E6%B3%95/"/>
     <id>https://wzdnzd.github.io/articles/20190427/自助法/</id>
     <published>2019-04-27T02:24:51.000Z</published>
-    <updated>2019-04-27T03:42:51.878Z</updated>
+    <updated>2019-04-27T03:50:06.046Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Sat Apr 27 2019 11:46:13 GMT+0800 (CST) --&gt;&lt;h2 id=&quot;自助法&quot;&gt;&lt;a href=&quot;#自助法&quot; class=&quot;headerlink&quot; title=&quot;自助法&quot;&gt;&lt;/a&gt;自助法&lt;/h2&gt;&lt;p&gt;在统计学中，自
+        &lt;!-- build time:Sat Apr 27 2019 11:50:20 GMT+0800 (CST) --&gt;&lt;h2 id=&quot;自助法&quot;&gt;&lt;a href=&quot;#自助法&quot; class=&quot;headerlink&quot; title=&quot;自助法&quot;&gt;&lt;/a&gt;自助法&lt;/h2&gt;&lt;p&gt;在统计学中，自
       
     
     </summary>
@@ -35,11 +35,11 @@
       <category term="数学" scheme="https://wzdnzd.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
     
     
+      <category term="机器学习" scheme="https://wzdnzd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="数学" scheme="https://wzdnzd.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
     
       <category term="概率统计" scheme="https://wzdnzd.github.io/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
-    
-      <category term="机器学习" scheme="https://wzdnzd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -54,7 +54,7 @@
     
       
       
-        &lt;!-- build time:Sat Apr 27 2019 11:46:13 GMT+0800 (CST) --&gt;&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;blockquote&gt;&lt;p
+        &lt;!-- build time:Sat Apr 27 2019 11:50:20 GMT+0800 (CST) --&gt;&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;blockquote&gt;&lt;p
       
     
     </summary>
@@ -81,7 +81,7 @@
     
       
       
-        &lt;!-- build time:Sat Apr 27 2019 11:46:13 GMT+0800 (CST) --&gt;&lt;h1 id=&quot;优化算法综述&quot;&gt;&lt;a href=&quot;#优化算法综述&quot; class=&quot;headerlink&quot; title=&quot;优化算法综述&quot;&gt;&lt;/a&gt;优化算法综述&lt;/h
+        &lt;!-- build time:Sat Apr 27 2019 11:50:20 GMT+0800 (CST) --&gt;&lt;h1 id=&quot;优化算法综述&quot;&gt;&lt;a href=&quot;#优化算法综述&quot; class=&quot;headerlink&quot; title=&quot;优化算法综述&quot;&gt;&lt;/a&gt;优化算法综述&lt;/h
       
     
     </summary>
@@ -108,7 +108,7 @@
     
       
       
-        &lt;!-- build time:Sat Apr 27 2019 11:46:13 GMT+0800 (CST) --&gt;&lt;p&gt;&lt;img src=&quot;/articles/20180902/机器学习-数据预处理/机器学习.png&quot; alt=&quot;特征工程&quot;&gt;&lt;/p&gt;&lt;!-- rebuild 
+        &lt;!-- build time:Sat Apr 27 2019 11:50:20 GMT+0800 (CST) --&gt;&lt;p&gt;&lt;img src=&quot;/articles/20180902/机器学习-数据预处理/机器学习.png&quot; alt=&quot;特征工程&quot;&gt;&lt;/p&gt;&lt;!-- rebuild 
       
     
     </summary>

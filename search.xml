@@ -3,14 +3,14 @@
   <entry>
     <title><![CDATA[自助法]]></title>
     <url>%2Farticles%2F20190427%2F%E8%87%AA%E5%8A%A9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[自助法在统计学中，自助法（Bootstrap Method，Bootstrapping，或自助抽样法）是一种从给定训练集中有放回的均匀抽样，也就是说，每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。机器学习中可通过交叉验证评估模型效果，当我们的数据量特别小的时候，我们可以采用自助法。比如我们有m个样本（m较小），每次在这m个样本中随机采集一个样本，放入训练集，采样完后把样本放回。这样重复采集m次，我们得到m个样本组成的训练集。当然，这m个样本中很有可能有重复的样本数据。m次采样过程中，有的样本会被重复采样，有的样本从来没有被采用过，可将这些没有被采样过的样本作为验证集，进行模型验证。由于我们的训练集有重复数据，这会改变数据的分布，因而训练结果会有估计偏差，因此，此种方法不是很常用，除非数据量真的很少。问题上面我们提到，在自助法的采样过程中，有的样本可能从来都没有被采样过。那么，对m个样本进行m次自助抽样，当m趋于无穷大时，最终有多少数据从未被选择过？很显然，在一次采样过程中，被采样到的概率是 $\frac{1}{m}$，则没有被采样到的概率是 $(1-\frac{1}{m})$，m次采样均未被采样到的概率为 $(1-\frac{1}{m})^m$，当m趋于无穷大时，概率为 $\lim\limits_{x \to \infty}{(1-\frac{1}{m})^m}$。即$$\lim\limits_{x \to \infty}{(1-\frac{1}{m})^m} = \lim\limits_{x \to \infty}{(1+\frac{1}{-m})^{-m \times (-1)}} = {e^{-1}} \approx 0.368$$也就是说，大约有 $36.8\%$ 的样本一次都没被采样过。Python 代码模拟123456789101112131415161718192021222324#! /usr/bin/env python3# -*- coding: utf-8 -*-# @Author: wzdnzdimport numpy as npdef simulate(m): if m &lt;= 0: raise ValueError("'m' must be great than 0") data = np.array([x for x in range(m)]) samples = [] for _ in range(m): samples.append(np.random.randint(0, m)) samples = np.array(samples) count = len(data[~np.isin(data, samples)]) return count / mif __name__ == "__main__": print("probability: ", simulate(1000000))运行结果如下：1probability: 0.36782]]></content>
+    <content type="text"><![CDATA[自助法在统计学中，自助法（Bootstrap Method，Bootstrapping，或自助抽样法）是一种从给定训练集中有放回的均匀抽样，也就是说，每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。机器学习中可通过交叉验证评估模型效果，当我们的数据量特别小的时候，我们可以采用自助法。比如我们有m个样本（m较小），每次在这m个样本中随机采集一个样本，放入训练集，采样完后把样本放回。这样重复采集m次，我们得到m个样本组成的训练集。m次采样过程中，有的样本可能会被重复采样，有的样本从来没有被采用过，可将这些没有被采样过的样本作为验证集，进行模型验证。由于我们的训练集有重复数据，这会改变数据的分布，因而训练结果会有估计偏差，因此，此种方法不是很常用，除非数据量真的很少。问题上面我们提到，在自助法的采样过程中，有的样本可能从来都没有被采样过。那么，对m个样本进行m次自助抽样，当m趋于无穷大时，最终有多少数据从未被选择过？很显然，在一次采样过程中，被采样到的概率是 $\frac{1}{m}$，则没有被采样到的概率是 $(1-\frac{1}{m})$，m次采样均未被采样到的概率为 $(1-\frac{1}{m})^m$，当m趋于无穷大时，概率为 $\lim\limits_{x \to \infty}{(1-\frac{1}{m})^m}$。即$$\lim\limits_{x \to \infty}{(1-\frac{1}{m})^m} = \lim\limits_{x \to \infty}{(1+\frac{1}{-m})^{-m \times (-1)}} = {e^{-1}} \approx 0.368$$也就是说，大约有 $36.8\%$ 的样本一次都没被采样过。Python 代码模拟123456789101112131415161718192021222324#! /usr/bin/env python3# -*- coding: utf-8 -*-# @Author: wzdnzdimport numpy as npdef simulate(m): if m &lt;= 0: raise ValueError("'m' must be great than 0") data = np.array([x for x in range(m)]) samples = [] for _ in range(m): samples.append(np.random.randint(0, m)) samples = np.array(samples) count = len(data[~np.isin(data, samples)]) return count / mif __name__ == "__main__": print("probability: ", simulate(1000000))运行结果如下：1probability: 0.36782]]></content>
       <categories>
         <category>数学</category>
       </categories>
       <tags>
+        <tag>机器学习</tag>
         <tag>数学</tag>
         <tag>概率统计</tag>
-        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>

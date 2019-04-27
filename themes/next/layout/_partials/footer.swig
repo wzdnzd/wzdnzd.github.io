@@ -15,7 +15,7 @@
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon"></span>
     <span class="post-meta-item-icon">
-      <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
       <i class="fa fa-eye"></i>
       总访问量： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
@@ -49,7 +49,7 @@
 
 <!-- 新增访客统计代码 -->
 <!-- <div class="busuanzi-count">
-    <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="site-uv">
       <i class="fa fa-user"></i>
       访问人数： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>

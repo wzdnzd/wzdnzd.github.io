@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[机器学习--数据预处理]]></title>
+    <title><![CDATA[自助法]]></title>
+    <url>%2Farticles%2F20190427%2F%E8%87%AA%E5%8A%A9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[自助法在统计学中，自助法（Bootstrap Method，Bootstrapping，或自助抽样法）是一种从给定训练集中有放回的均匀抽样，也就是说，每当选中一个样本，它等可能地被再次选中并被再次添加到训练集中。机器学习中可通过交叉验证评估模型效果，当我们的数据量特别小的时候，我们可以采用自助法。比如我们有m个样本（m较小），每次在这m个样本中随机采集一个样本，放入训练集，采样完后把样本放回。这样重复采集m次，我们得到m个样本组成的训练集。当然，这m个样本中很有可能有重复的样本数据。m次采样过程中，有的样本会被重复采样，有的样本从来没有被采用过，可将这些没有被采样过的样本作为验证集，进行模型验证。由于我们的训练集有重复数据，这会改变数据的分布，因而训练结果会有估计偏差，因此，此种方法不是很常用，除非数据量真的很少。问题上面我们提到，在自助法的采样过程中，有的样本可能从来都没有被采样过。那么，对m个样本进行m次自助抽样，当m趋于无穷大时，最终有多少数据从未被选择过？很显然，在一次采样过程中，被采样到的概率是 $\frac{1}{m}$，则没有被采样到的概率是 $(1-\frac{1}{m})$，m次采样均未被采样到的概率为 $(1-\frac{1}{m})^m$，当m趋于无穷大时，概率为 $\lim\limits_{x \to \infty}{(1-\frac{1}{m})^m}$。即$$\lim\limits_{x \to \infty}{(1-\frac{1}{m})^m} = \lim\limits_{x \to \infty}{(1+\frac{1}{-m})^{-m \times (-1)}} = {e^{-1}} \approx 0.368$$也就是说，大约有 $36.8\%$ 的样本一次都没被采样过。Python 代码模拟123456789101112131415161718192021222324#! /usr/bin/env python3# -*- coding: utf-8 -*-# @Author: wzdnzdimport numpy as npdef simulate(m): if m &lt;= 0: raise ValueError("'m' must be great than 0") data = np.array([x for x in range(m)]) samples = [] for _ in range(m): samples.append(np.random.randint(0, m)) samples = np.array(samples) count = len(data[~np.isin(data, samples)]) return count / mif __name__ == "__main__": print("probability: ", simulate(1000000))运行结果如下：1probability: 0.36782]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>概率统计</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[圆环上随机取3个点组成一个锐角三角形的概率]]></title>
+    <url>%2Farticles%2F20190418%2F%E5%9C%86%E7%8E%AF%E4%B8%8A%E9%9A%8F%E6%9C%BA%E5%8F%963%E4%B8%AA%E7%82%B9%E7%BB%84%E6%88%90%E4%B8%80%E4%B8%AA%E9%94%90%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E6%A6%82%E7%8E%87%2F</url>
+    <content type="text"><![CDATA[问题在一个圆环上随机取3点，求这3个点组成一个锐角三角形的概率题解如下图所示：取单位圆上任意两点点A和B，A、B两点确定以后，点A、B、C三点要够成锐角三角形，点C必须在DE之间，否在将构成钝角三角形。设AB弧所对应的圆心角为$\theta$,则当且仅当$\theta \in (0, \pi)$ 时有可能构成锐角三角形。$\theta$ 的概率密度是 $\frac{1}{\pi}$，此时组成锐角三角形需要C点在AB对应的DE段间的概率是 $\frac{\theta}{2\pi}$。故在一个圆环上随机添加3点，三个点组成一个锐角三角形的概率为$$\int_0^\pi \frac{1}{\pi}\cdot\frac{\theta}{2\pi}\mathrm{d}\theta = \frac{\theta ^ 2}{4\pi ^ 2}\bigg|_0^\pi = \frac{1}{4}$$Python 代码模拟1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#! /usr/bin/env python3# -*- coding: utf-8 -*-# @Author: wzdnzdimport numpy as npdef simulate(n): # 圆心角θ所对应的弦长 l = 2 * R * sin(θ/2), R为圆的半径 def compute(theta): if theta &gt; np.pi: theta = 2 * np.pi - theta return 2 * np.sin(theta / 2) # 根据三角形三条边的平方关系判断是否是锐角、直角或钝角三角形 def judge(array): if len(array) != 3: raise ValueError('len(array) must be 3.') if array[0] ** 2 + array[1] ** 2 &gt; array[2] ** 2: return -1 elif array[0] ** 2 + array[1] ** 2 == array[2] ** 2: return 0 else: return 1 acute, right, obtuse = 0, 0, 0 for _ in range(n): angles = sorted(np.random.rand(3) * 2 * np.pi) chords = sorted([compute(angles[1] - angles[0]), compute(angles[2] - angles[1]), compute(2 * np.pi + angles[0] - angles[2])]) flag = judge(chords) if flag == -1: acute += 1 elif flag == 0: right += 1 else: obtuse += 1 return [x / n for x in [acute, right, obtuse]]if __name__ == "__main__": probabilities = simulate(100000) print('acute: &#123;&#125;\tright: &#123;&#125;\tobtuse: &#123;&#125;'.format( probabilities[0], probabilities[1], probabilities[2]))运行结果如下：1acute: 0.25009 right: 0.0 obtuse: 0.74991]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>算法</tag>
+        <tag>概率统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[深度学习 - 优化器综述]]></title>
+    <url>%2Farticles%2F20190117%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BC%98%E5%8C%96%E5%99%A8%E7%BB%BC%E8%BF%B0%2F</url>
+    <content type="text"><![CDATA[优化算法综述1. 批量梯度下降BGD（Batch Gradient Descent）更新公式：$$ \theta = \theta - \eta \sum_{i=1}^{m}\nabla f(\theta;x_i,y_i) $$其中，m 为样本个数优点：每次更新都会朝着正确的方向进行，最后能够保证收敛于极值点（凸函数收敛于全局极值点，非凸函数可能会收敛于局部极值点）缺点：每次学习时间过长，并且如果训练集很大以至于需要消耗大量的内存，不能进行在线模型参数更新2. 随机梯度下降SGD（Stochastic Gradient Descent）更新公式：$$ \theta = \theta - \eta\nabla f(\theta;x_i,y_i) $$优点：学习速度快，可在线更新缺点：每次更新可能不会按照正确的方向进行，因此可以带来优化波动，如下图：不过从另一个方面来看，随机梯度下降所带来的波动有个好处就是，对于类似盆地区域（即很多局部极小值点）那么这个波动的特点可能会使得优化的方向从当前的局部极小值点跳到另一个更好的局部极小值点，这样便可能对于非凸函数，最终收敛于一个较好的局部极值点，甚至全局极值点由于波动，因此会使得迭代次数（学习次数）增多，即收敛速度变慢3. 小批量梯度下降（Mini-batch Gradient Descent）更新公式：$$ \theta = \theta - \eta\sum_{i=t}^{t+k}\nabla f(\theta;x_i,y_i)$$其中，k为每批样本的数量优点：相对于随机梯度下降，Mini-batch梯度下降降低了收敛波动性，即降低了参数更新的方差，使得更新更加稳定相对于批量梯度下降，其提高了每次学习的速度。并且其不用担心内存瓶颈从而可以利用矩阵运算进行高效计算4. 动量法（Momentum）更新公式：$$\nu_t = \gamma\nu_{t-1} -1 + \eta\nabla f(\theta)$$$$\theta = \theta - \nu_t$$优点：能解决SGD在峡谷地区（些方向较另一些方向上陡峭得多，常见于局部极值点）附近振荡导致收敛速度慢的问题，详见《动手学深度学习》缺点：需要选择足够小的学习率使得自变量在梯度值较大的维度上不发散。但这样会导致自变量在梯度值较小的维度上迭代过慢4. AdaGradAdagrad 的算法会使用一个小批量随机梯度 $g_t$ 按元素平方的累加变量 $s_t$ 。在时间步 0，Adagrad 将 $s_0$ 中每个元素初始化为 0。在时间步 t ，首先将小批量随机梯度 $g_t$ 按元素平方后累加到变量 $s_t$ ：$$s_t = s_{t-1} + g_t\odot g_t$$其中 $\odot$ 是按元素相乘。接着，我们将目标函数自变量中每个元素的学习率通过按元素运算重新调整一下：$$x_t = x_{t-1} - \frac{\eta}{\sqrt{s_t + \epsilon}}\odot g_t$$其中 $\eta$ 是学习率，$\epsilon$ 是为了维持数值稳定性而添加的常数，例如$10^{-6}$。这里开方、除法和乘法的运算都是按元素进行的。这些按元素运算使得目标函数自变量中每个元素都分别拥有自己的学习率。优点：每个变量都有自己的学习率，如果目标函数有关自变量中某个元素的偏导数一直都较大，那么该元素的学习率将下降较快；反之，如果目标函数有关自变量中某个元素的偏导数一直都较小，那么该元素的学习率将下降较慢缺点：由于$s_t$一直在累加按元素平方的梯度，自变量中每个元素的学习率在迭代过程中一直在降低（或不变），梯度下降太快。所以，当学习率在迭代早期降得较快且当前解依然不佳时，Adagrad 在迭代后期由于学习率过小，可能较难找到一个有用的解5. RMSprop不同于 Adagrad 里状态变量 $s_t$ 是截至时间步 $t$ 所有小批量随机梯度 $g_t$ 按元素平方和，RMSProp 将这些梯度按元素平方做指数加权移动平均。具体来说，给定超参数 $0\leq\gamma\lt1$ ，RMSProp 在时间步 $t\gt0$ 计算$$s_t = \gamma s_{t-1} + (1-\gamma)g_t\odot g_t$$和 Adagrad 一样，RMSProp 将目标函数自变量中每个元素的学习率通过按元素运算重新调整，然后更新自变量$$x_t = x_{t-1} - \frac{\eta}{\sqrt{s_t + \epsilon}}\odot g_t$$其中 $\eta$ 是学习率，$\epsilon$ 是为了维持数值稳定性而添加的常数，例如 $10 ^ {-6}$ 。因为 RMSProp 的状态变量是对平方项 $g_t \odot g_t$ 的指数加权移动平均，所以可以看作是最近 $\frac{1}{1-\gamma}$ 个时间步的小批量随机梯度平方项的加权平均优点：自变量每个元素的学习率在迭代过程中不再一直降低（或不变），解决了 Adagrad 学习率衰减过快的问题6. AdamAdam 使用了动量变量 $\nu_t$ 和 RMSProp 中小批量随机梯度按元素平方的指数加权移动平均变量 $s_t$ ，并在时间步 0 将它们中每个元素初始化为 0。给定超参数 $0\leq\beta_1\lt1$（算法作者建议设为 0.9），时间步 $t$ 的动量变量 $\nu_t$ 即小批量随机梯度 $g_t$ 的指数加权移动平均：$$\nu_t = \beta_1\nu_{t-1} + (1-\beta_1)g_t$$和 RMSProp 中一样，给定超参数 $0\leq\beta_2\lt1$（算法作者建议设为 0.999）， 将小批量随机梯度按元素平方后的项 $g_t\odot g_t$ 做指数加权移动平均得到 $s_t$：$$s_t = \beta_2 s_{t-1} + (1-\beta_2)g_t\odot g_t$$由于我们将 $\nu_0$ 和 $s_0$ 中的元素都初始化为 0， 在时间步 $t$ 我们得到 $\nu_t = (1-\beta_1)\sum_{i=1}^{t}\beta_{1}^{t-i}g_i$ 。将过去各时间步小批量随机梯度的权值相加，得到 $(1-\beta_1)\sum_{i=1}^{t}\beta_{1}^{t-i}g_i = 1-\beta_{1}^{t-i}$ 。需要注意的是，当 $t$ 较小时，过去各时间步小批量随机梯度权值之和会较小。例如当 $\beta_1=0.9$ 时，$\nu_1 = 0.1 g_1$ 。为了消除这样的影响，对于任意时间步 $t$ ，我们可以将 $\nu_t$ 再除以 $1-\beta_{1}^{t}$ ，从而使得过去各时间步小批量随机梯度权值之和为 1。这也叫做偏差修正。在 Adam 算法中，我们对变量 $\nu_t$ 和 $s_t$ 均作偏差修正：$$\hat{\nu}_t = \frac{\nu_t}{1-\beta_1^{t}}$$$$\hat{s}_t = \frac{s_t}{1-\beta_2^{t}}$$接下来，Adam 算法使用以上偏差修正后的变量 $\hat{\nu}_t$ 和 $\hat{s}_t$ ，将模型参数中每个元素的学习率通过按元素运算重新调整：$$g’_t = \frac{\eta \hat{\nu}_t}{\sqrt{\hat{s}_t + \epsilon}}$$其中 $\eta$ 是学习率，$\epsilon$是为了维持数值稳定性而添加的常数，例如 $10^{-8}$。和 Adagrad、RMSProp 以及 Adadelta 一样，目标函数自变量中每个元素都分别拥有自己的学习率。最后，使用 $g’_t$ 迭代自变量：$$x_t = x_{t-1} - g’_t$$优点：可能是目前最好的优化器7. 各优化方法比较下面两幅图可视化形象地比较上述各优化方法，详细参见这里，如图：从上图可以看出，Adagrad、Adadelta 与 RMSprop 在损失曲面上能够立即转移到正确的移动方向上达到快速的收敛。而 Momentum 与 NAG 会导致偏离(off-track)。同时 NAG 能够在偏离之后快速修正其路线，因为其根据梯度修正来提高响应性从上图可以看出，在鞍点（saddle points）处(即某些维度上梯度为零，某些维度上梯度不为零)，SGD、Momentum与NAG一直在鞍点梯度为零的方向上振荡，很难打破鞍点位置的对称性；Adagrad、RMSprop 与 Adadelta 能够很快地向梯度不为零的方向上转移从上面两幅图可以看出，自适应学习速率方法（Adagrad、Adadelta、RMSprop 与 Adam）在这些场景下具有更好的收敛速度与收敛性8. Reference深度学习优化算法综述动手学深度学习An overview of gradient descent optimization algorithms]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>优化器</tag>
+        <tag>梯度下降</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[机器学习 - 数据预处理]]></title>
     <url>%2Farticles%2F20180902%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86%2F</url>
     <content type="text"><![CDATA[]]></content>
       <categories>
